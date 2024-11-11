@@ -84,7 +84,7 @@ N_t = int(T_tot/delta_t)
 diskPosition = np.zeros((2,N_t))
 
 for n_t in range(N_t):
-    if n_t%1000 == 0:
+    if n_t%500 == 0:
         print(f'Starting measurement {n_t}')
 
     diskPosition[:,n_t] = [X_disk, Y_disk]
@@ -107,8 +107,6 @@ for n_t in range(N_t):
             # Update particle velocities
             velocities[0,i] += -Fx / m_part * delta_t
             velocities[1,i] += -Fy / m_part * delta_t
-        else:
-            print('It happened')
 
     # Update disk velocity
     v_disk[0] += Fx_disk / m_disk * delta_t
@@ -131,7 +129,7 @@ for n_t in range(N_t):
     X_disk, Y_disk, v_disk[0], v_disk[1] = CheckBoxConstraint(X_disk, Y_disk, v_disk[0], v_disk[1],
                                                               x_min+R_disk, x_max-R_disk, y_min+R_disk, y_max-R_disk)
 
-# Calculate MSD
+#%% Calculate MSD
 MSD = np.zeros((N_t))
 
 for n_t in range(1,N_t):
