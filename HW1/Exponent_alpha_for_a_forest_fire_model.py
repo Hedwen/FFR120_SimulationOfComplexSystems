@@ -159,10 +159,11 @@ alpha_std = np.std(alpha_array, axis=1)
 N_inverse = [1 / N for N in N_list]
 
 # Alpha at 1/N = 0
-p = np.polyfit(N_inverse[:5], alpha_average[:5], 1)
-alpha_inf = -p[1]/p[0]
+p = np.polyfit(N_inverse[1:], alpha_average[1:], 1)
+alpha_inf = p[1]
 
-plt.plot(N_inverse, alpha_average, yerr=alpha_std, format='o-')
+plt.errorbar(N_inverse, alpha_average, yerr=alpha_std, fmt='o')
+plt.plot(N_inverse, p[0]*np.array(N_inverse) + p[1], '--k')
 plt.xlabel(r'$1/N$')
 plt.ylabel(r'$\alpha$')
 plt.title(r'Exponent $\alpha_N$ as a function of $N^{-1}$')
@@ -173,3 +174,5 @@ plt.show()
 
 
 
+
+# %%
