@@ -170,9 +170,4 @@ plt.title(r'Exponent $\alpha_N$ as a function of $N^{-1}$')
 plt.grid()
 plt.show()
 
-
-
-
-
-
 # %%
