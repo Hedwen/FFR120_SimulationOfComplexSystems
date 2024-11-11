@@ -138,7 +138,7 @@ for n_t in range(1,N_t):
 
 #%% Plot
 # Disk trajectory
-plt.plot(diskPosition[0,:], diskPosition[1,:], '.')
+plt.plot(diskPosition[0,:], diskPosition[1,:])
 plt.xlim(x_min,x_max)
 plt.ylim(y_min,y_max)
 plt.title("Trajectory of the Brownian Disk in the Cartesian plane")
