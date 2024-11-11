@@ -102,13 +102,21 @@ for H in H_list:
             m_temp.append(1/Nspins * np.sum(sl))
     m_array.append(np.mean(m_temp))
 
-# Plot
+#%% Plot
+
+p = np.polyfit(H_list[4:9], m_array[4:9], 1)
+chi = p[0]
+
 plt.plot(H_list, m_array, '.-')
+plt.plot(H_list, p[0]*np.array(H_list) + p[1], '--k')
+plt.ylim([-1,1])
 plt.xlabel(r'$H$')
 plt.ylabel(r'$m(H)$')
 plt.title(r'Magnetization $m(H)$ as a function of the magnetic field $H$')
 plt.grid()
 plt.show()
+
+print(f'Calculated value of chi: {chi}')
 
 #%% Task 2
 T_list = [0.1, 0.2, 0.5, 1, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 5]

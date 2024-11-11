@@ -170,4 +170,6 @@ plt.title(r'Exponent $\alpha_N$ as a function of $1/N$')
 plt.grid()
 plt.show()
 
+print(f'Calculated value of alpha: {alpha_inf}')
+
 # %%
