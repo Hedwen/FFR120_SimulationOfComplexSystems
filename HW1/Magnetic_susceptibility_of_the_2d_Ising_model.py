@@ -95,15 +95,16 @@ m_array = []
 for H in H_list:
     print(f'Simulating for H = {H}')
     m_temp = []
+
     for iteration in range(max_iterations):
         sl = IsingModelStep(sl, H, J, T, kb, Nspins, S)
 
         if iteration > max_iterations - 200:
             m_temp.append(1/Nspins * np.sum(sl))
+
     m_array.append(np.mean(m_temp))
 
-#%% Plot
-
+# Plot
 p = np.polyfit(H_list[4:9], m_array[4:9], 1)
 chi = p[0]
 
@@ -120,6 +121,34 @@ print(f'Calculated value of chi: {chi}')
 
 #%% Task 2
 T_list = [0.1, 0.2, 0.5, 1, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 5]
-H = 0
+H = 0.1
 
 max_iterations = 5000
+
+sl = 2 * np.random.randint(2, size=(N,N)) - 1
+
+Nspins = np.size(sl)
+S = int(np.ceil(Nspins * 0.05))
+
+m_array = []
+
+for T in T_list:
+    print(f'Simulating for T = {T}')
+    m_temp = []
+
+    for iteration in range(max_iterations):
+        if iteration > 300:
+            H = 0
+
+        sl = IsingModelStep(sl, H, J, T, kb, Nspins, S)
+
+    m_array.append(1/Nspins * np.sum(sl))
+
+#%% Plot
+plt.plot(T_list, m_array, '.-')
+plt.xlabel(r'$T$')
+plt.ylabel(r'$m(T)$')
+plt.title(r'Magnetization $m(T)$ as a function of the temperature $T$')
+plt.grid()
+plt.show()
+# %%
