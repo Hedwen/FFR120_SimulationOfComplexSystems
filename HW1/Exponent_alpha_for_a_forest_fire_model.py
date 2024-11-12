@@ -164,6 +164,7 @@ alpha_inf = p[1]
 
 plt.errorbar(N_inverse, alpha_average, yerr=alpha_std, fmt='o')
 plt.plot(N_inverse, p[0]*np.array(N_inverse) + p[1], '--k')
+plt.ylim(1.09,1.35)
 plt.xlabel(r'$1/N$')
 plt.ylabel(r'$\alpha$')
 plt.title(r'Exponent $\alpha_N$ as a function of $1/N$')

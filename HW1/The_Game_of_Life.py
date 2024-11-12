@@ -35,9 +35,9 @@ def ApplyRule(rule_2d, status):
 N = 100     # Bigger if possible
 
 n_runs = 5
-n_time_steps = 600
+n_time_steps = 1000
 
-steady_time_steps = 150
+steady_time_steps = 200
 
 alive_array = np.zeros([n_runs, n_time_steps])
 change_array = np.zeros([n_runs, n_time_steps-steady_time_steps])

@@ -132,9 +132,9 @@ for n_t in range(N_t):
 #%% Calculate MSD
 MSD = np.zeros((N_t))
 
-for n_t in range(1,N_t):
-    displacement = np.sum((diskPosition[:,n_t:N_t] - diskPosition[:,:N_t-n_t])**2)
-    MSD[n_t-1] = np.mean(displacement)
+for n_t in range(1, N_t):
+    displacement = np.sum((diskPosition[:,n_t:] - diskPosition[:,:-n_t])**2, axis=0)
+    MSD[n_t] = np.mean(displacement)
 
 #%% Plot
 # Disk trajectory
@@ -156,4 +156,17 @@ plt.show()
 
 # %% Calculate estimate of D
 
-MSD(tau) = 4*D*tau
+# Calculate MSD(tau)
+p = np.polyfit(timeSteps, MSD, 1)
+D = p[0]/4
+
+plt.plot(timeSteps, MSD)
+plt.plot(timeSteps, p[0]*timeSteps + p[1], '--k')
+plt.xlabel("Time")
+plt.ylabel("Mean Square Displacement")
+plt.title("Mean Square Displacement (MSD) of Disk")
+plt.grid()
+plt.show()
+
+print(f'Approximate value of D: {D}')
+# %%
