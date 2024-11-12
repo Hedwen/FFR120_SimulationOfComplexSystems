@@ -37,7 +37,7 @@ N = 100     # Bigger if possible
 n_runs = 5
 n_time_steps = 600
 
-steady_time_steps = 125
+steady_time_steps = 150
 
 alive_array = np.zeros([n_runs, n_time_steps])
 change_array = np.zeros([n_runs, n_time_steps-steady_time_steps])
@@ -68,7 +68,7 @@ t = np.arange(n_time_steps)
 
 for i in range(len(alive_array)):
     plt.plot(t, alive_array[i,:], '.-')
-    plt.hlines(np.mean(alive_array[0,:]),t[0],t[-1],colors='k', linestyles='--')
+    plt.hlines(np.mean(alive_array[i,:]),t[0],t[-1],colors='k', linestyles='--')
     plt.xlabel(r'$t$')
     plt.ylabel(f'Number of live cells')
     plt.title(f'Number of live cells as a function of time for run {i+1}')
@@ -85,6 +85,10 @@ for i in range(len(alive_array)):
 avg_density = np.mean(alive_array)/gol.size
 
 print(f'Average density of alive cells: {avg_density}')
+
+for i in range(len(alive_array)):
+    avg = np.mean(alive_array[i,:])
+    print(f'Average from run {i+1}: {avg}')
 
 
 # %%
